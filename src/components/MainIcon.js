@@ -24,9 +24,15 @@ const styles = StyleSheet.create({
   },
   icons: {
     backgroundColor: "#D93970",
+<<<<<<< HEAD
     width: 140,
     height: 140,
     borderRadius: 12,
+=======
+    width: 120,
+    height: 120,
+    borderRadius: 10,
+>>>>>>> b1798f59c8013059eb81cdc884824447c7b86495
     marginBottom: 40,
   },
 });
