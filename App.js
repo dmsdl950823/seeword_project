@@ -8,7 +8,7 @@ import {
   ImageBackground,
   Image,
 } from "react-native";
-import { Styled } from "styled-components";
+// import { Styled } from "styled-components";
 import Main from "./src/Main";
 import "react-native-gesture-handler";
 
