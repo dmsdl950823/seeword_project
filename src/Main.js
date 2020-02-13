@@ -17,8 +17,8 @@ export default class Main extends React.Component {
         <ImageBackground
           style={{ width: "100%", height: "100%" }}
           source={require("./../assets/back.png")}>
+          
           <MainIcon />
-
           <MainButtons />
         </ImageBackground>
       </View>

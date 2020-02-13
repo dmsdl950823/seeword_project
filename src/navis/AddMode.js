@@ -8,10 +8,22 @@ import {
   FlatList,
   TextInput,
 } from "react-native";
+import styled from "styled-components";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
+
+const GobackBttn = styled.TouchableOpacity`
+  width: 15px;
+  height: 15px;
+  border-bottom-width: 2px;
+  border-bottom-color: #fff;
+  border-left-width: 2px;
+  border-left-color: #fff;
+  transform: rotate(45deg);
+  margin-left: 20px;
+`;
 
 function AddWords() {
   return (
@@ -22,89 +34,141 @@ function AddWords() {
           component={AddModePage}
           options={{
             title: "Add Words",
-            headerLeft: () => (
-              <Button
-                onPress={() => alert("This is a button! You got plus 1!")}
-                title="Info"
-                color="red"
-              />
-            ),
+            headerLeft: () => <GobackBttn onPress={() => alert("ㄴㄱㅈㅁ")} />,
+            headerTintColor: "#FFF",
+            headerStyle: {
+              backgroundColor: "#4654A6",
+            },
+            headerTitleStyle: {
+              // fontWeight: "bold",
+            },
           }}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
+// **** styles
+const WholeWrap = styled.View`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+`;
+
+const ColorSelect = styled.TouchableOpacity`
+  background-color: linear-gradient(
+    90deg,
+    rgba(217, 32, 70, 1) 0%,
+    rgba(217, 89, 112, 1) 50%
+  );
+  width: 60px;
+  height: 60px;
+  border: 3px solid white;
+  border-radius: 50px;
+  elevation: 8;
+`;
+// box-shadow: 1px 1px 1px 0.8;
+
+const GroupSelect = styled.View`
+  background-color: #fff;
+  width: 150px;
+  height: 60px;
+  margin-left: 40px;
+  border: 2px solid #9ba8dd;
+  border-radius: 10px;
+`;
+
+const GroupListText = styled.Text`
+  text-align: center;
+  line-height: 55px;
+  font-size: 24px;
+  color: #bcbcbc;
+`;
+
+const TopGroup = styled.View`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: flex-end;
+  justify-content: center;
+  flex: 2;
+`;
+
+const Inputs = styled.TextInput`
+  width: 70%;
+  height: 50px;
+  border-bottom-width: 2px;
+  border-bottom-color: #9ba8dd;
+  color: #bcbcbc;
+  font-size: 24px;
+  text-align: center;
+  margin-top: 35px;
+`;
+// padding-bottom: px;
+
+const InputWrap = styled.View`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 6;
+`;
+
+const SubmitBtnWrap = styled.View`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  flex: 3;
+`;
+// border: 1px solid pink;
+
+const Buttons = styled.TouchableOpacity`
+  width: 150px;
+  height: 50px;
+  border-radius: 10px;
+  elevation: 2;
+  background-color: #${props => (props.title === "REGISTER" ? "4654a6" : "d93970")};
+  ${props => (props.title === "REGISTER" ? "margin-right: 10px;" : "")}
+`;
+
+const ButtonText = styled.Text`
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+  line-height: 45px;
+`;
+
 function AddModePage() {
   return (
-    <View>
-      <View>
-        <View style={styles.sample}>
-          <Text>새믈</Text>
-        </View>
+    <WholeWrap>
+      <TopGroup>
+        <ColorSelect />
 
-        <View>
-          <Text>Group</Text>
-        </View>
+        <GroupSelect>
+          <GroupListText>Group</GroupListText>
+        </GroupSelect>
+      </TopGroup>
 
-        {/* <FlatList
-        style={styles.item}
-        data={[
-          { key: "Group" },
-          { key: "Dan" },
-          { key: "Dominic" },
-          { key: "Jackson" },
-          { key: "James" },
-          { key: "Joel" },
-          { key: "John" },
-          { key: "Jillian" },
-          { key: "Jimmy" },
-          { key: "Julie" },
-        ]}
-        renderItem={({ item }) => <Text>{item.key}</Text>}
-      /> */}
-      </View>
-
-      <View>
-        <TextInput
-          style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
-          onChangeText={text => onChangeText(text)}
-          placeholder="WORD"
-        />
-        <TextInput
-          style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+      <InputWrap>
+        <Inputs onChangeText={text => onChangeText(text)} placeholder="WORD" />
+        <Inputs
           onChangeText={text => onChangeText(text)}
           placeholder="MEANING"
         />
-        <TextInput
-          style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
-          onChangeText={text => onChangeText(text)}
-          placeholder="TIP"
-        />
-      </View>
+        <Inputs onChangeText={text => onChangeText(text)} placeholder="TIP" />
+      </InputWrap>
 
-      <View>
-        <Button title="REGISTER" />
-        <Button title="CANCLE" />
-      </View>
-    </View>
+      <SubmitBtnWrap>
+        <Buttons title="REGISTER">
+          <ButtonText>REGISTER</ButtonText>
+        </Buttons>
+        <Buttons title="CANCLE">
+          <ButtonText>CANCLE</ButtonText>
+        </Buttons>
+      </SubmitBtnWrap>
+    </WholeWrap>
   );
 }
-
-const styles = StyleSheet.create({
-  sample: {
-    backgroundColor: "red",
-    width: 50,
-    height: 50,
-  },
-  item: {
-    width: 70,
-    height: 50,
-  },
-  itemList: {
-    width: 70,
-    height: 500,
-  },
-});
 
 export default AddWords;
