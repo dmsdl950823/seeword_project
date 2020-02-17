@@ -13,7 +13,7 @@ import Main from "./src/Main";
 import "react-native-gesture-handler";
 
 import AddWords from "./src/navis/AddMode";
-// import MyLists from "./src/navis/MyLists";
+import MyLists from "./src/navis/MyLists";
 import ReciteMode from "./src/navis/ReciteMode";
 
 export default class App extends Component {
@@ -24,8 +24,8 @@ export default class App extends Component {
     //   </View>
     // );
 
-    return <AddWords />;
-    // return <MyLists />;
+    // return <AddWords />;
+     return <MyLists />;
     // return <ReciteMode />;
   }
 }
