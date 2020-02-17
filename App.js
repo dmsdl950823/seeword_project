@@ -25,8 +25,8 @@ export default class App extends Component {
     // );
 
     // return <AddWords />;
-     return <MyLists />;
-    // return <ReciteMode />;
+    // return <MyLists />;
+     return <ReciteMode />;
   }
 }
 
