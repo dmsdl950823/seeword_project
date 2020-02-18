@@ -191,4 +191,5 @@ const styles = StyleSheet.create({
   item_box2: { backgroundColor: "blue" },
 });
 
-export default MyLists;
+// export default MyLists;
+export default MyListsPage;

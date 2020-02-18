@@ -1,45 +1,106 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  ImageBackground,
-} from "react-native";
-import styled, { injectGlobal } from "styled-components";
-import MainButtons from "./components/MainButtons";
+import { View, Button } from "react-native";
+
 import MainIcon from "./components/MainIcon";
+import AddModePage from "./navis/AddMode";
+import MyListsPage from "./navis/MyLists";
+import RecitePage from "./navis/ReciteMode";
+import {
+  Container,
+  ImgBack,
+  ButtonsContainer,
+  MoveButton,
+  ButtonText,
+  styles,
+  GobackBttn,
+} from "./components/Main_styles";
+
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+const Stack = createStackNavigator();
 
 export default class Main extends React.Component {
+  state = {
+    // page: "main",
+    page: "other",
+  };
   render() {
     return (
-      <View style={styles.container}>
-        <ImageBackground
-          style={{ width: "100%", height: "100%" }}
-          source={require("./../assets/back.png")}>
-          
-          <MainIcon />
-          <MainButtons />
-        </ImageBackground>
-      </View>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: this._pageState(),
+            headerLeft: () => (
+              <GobackBttn onPress={() => navigation.goBack()} />
+            ),
+            headerTintColor: "#FFF",
+            headerStyle: {
+              backgroundColor: "#4654A6",
+            },
+            headerTitleStyle: {
+              // fontWeight: "bold",
+            },
+          }}
+          options={{
+            title: "Main",
+          }}>
+          <Stack.Screen name="Main" component={MainPage} />
+          <Stack.Screen name="AddWords" component={AddModePage} />
+          <Stack.Screen name="MyLists" component={MyListsPage} />
+          <Stack.Screen name="Recite" component={RecitePage} />
+        </Stack.Navigator>
+      </NavigationContainer>
     );
+  }
+
+  _pageState() {
+    if (this.state.page === "main") {
+      return false;
+    } else {
+      return true;
+    }
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  icons: {
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#D93970",
-    width: 120,
-    height: 120,
-    borderRadius: 20,
-    marginBottom: 30,
-  },
-});
+function MainPage({ navigation }) {
+  console.log(this);
+  return (
+    <Container>
+      <ImgBack source={require("./../assets/back.png")}>
+        <MainIcon />
+
+        <MainButtons navigation={navigation} toto="dd?" />
+        {/* <Button
+            title="example"
+            onPress={() => {
+              navigation.navigate("AddWords");
+            }}
+          /> */}
+      </ImgBack>
+    </Container>
+  );
+}
+
+function MainButtons(nav) {
+  // console.log(nav.navigation);
+  return (
+    <ButtonsContainer>
+      <View style={styles.shadow}>
+        <MoveButton onPress={() => nav.navigation.navigate("AddWords")}>
+          <ButtonText>ADD WORDS</ButtonText>
+        </MoveButton>
+      </View>
+      <View style={styles.shadow}>
+        <MoveButton onPress={() => nav.navigation.navigate("MyLists")}>
+          <ButtonText>RECITE MODE</ButtonText>
+        </MoveButton>
+      </View>
+      <View style={styles.shadow}>
+        <MoveButton onPress={() => nav.navigation.navigate("Recite")}>
+          <ButtonText>MY LISTS</ButtonText>
+        </MoveButton>
+      </View>
+    </ButtonsContainer>
+  );
+}

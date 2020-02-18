@@ -1,38 +1,24 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  ImageBackground,
-} from "react-native";
+import styled from "styled-components";
+
+const IconContainer = styled.View`
+  flex: 0.8;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
+const IconBox = styled.View`
+  background-color: #d93970;
+  width: 140px;
+  height: 140px;
+  border-radius: 12px;
+  display: flex;
+`;
 
 export default function MainIcon() {
   return (
-    <View style={styles.container}>
-      <View style={styles.icons} />
-    </View>
+    <IconContainer>
+      <IconBox />
+    </IconContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 0.5,
-    alignItems: "center",
-    justifyContent: "flex-end",
-    marginBottom: 20,
-  },
-  icons: {
-    backgroundColor: "#D93970",
-    width: 140,
-    height: 140,
-    borderRadius: 12,
-    marginBottom: 40,
-  },
-});
-
-// borderTopColor: "red",
-// borderLeftColor: "red",
-// borderRightColor: "red",
-// borderBottomColor: "red",
-// borderWidth: 2,

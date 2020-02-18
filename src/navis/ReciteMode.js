@@ -209,4 +209,5 @@ function RecitePage() {
   );
 }
 
-export default ReciteMode;
+// export default ReciteMode;
+export default RecitePage;
