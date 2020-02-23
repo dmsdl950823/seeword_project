@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   Button,
+  ScrollView,
   FlatList,
   TextInput,
 } from "react-native";
@@ -75,12 +76,14 @@ function MyLists() {
   );
 }
 
-const ListsUl = styled.FlatList`
+const ListContainer = styled.View`
+  width: 100%;
+  height: 70px;
+  margin-top: 20px;
   display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
 `;
-// justify-content: center;
 
 const Lists = styled.View`
   width: 80%;
@@ -92,13 +95,12 @@ const Lists = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-top: 20px;
 `;
 
 const GroupName = styled.Text`
   line-height: 62px;
   font-size: 20px;
-  width: 60%;
+  width: 67%;
 `;
 
 const PlayBttn = styled.TouchableOpacity`
@@ -132,25 +134,27 @@ function MyListsPage() {
         ]}
         style={styles.item_box}
         renderItem={({ item }) => (
-          <Lists>
-            <GroupName>{item.key}</GroupName>
-            <MoreCont title="...">
-              {/* <Ionicons name="dots-three-horizontal" /> */}
-              <MaterialCommunityIcons
-                name="dots-horizontal"
-                size={29}
-                color="#9BA8DD"
-              />
-            </MoreCont>
-            <PlayBttn title="random play">
-              <Foundation
-                name="play"
-                size={26}
-                color="#4654A6"
-                style={{ marginLeft: 9, lineHeight: 30 }}
-              />
-            </PlayBttn>
-          </Lists>
+          <ListContainer>
+            <Lists>
+              <GroupName>{item.key}</GroupName>
+              <MoreCont title="...">
+                {/* <Ionicons name="dots-three-horizontal" /> */}
+                <MaterialCommunityIcons
+                  name="dots-horizontal"
+                  size={29}
+                  color="#9BA8DD"
+                />
+              </MoreCont>
+              <PlayBttn title="random play">
+                <Foundation
+                  name="play"
+                  size={26}
+                  color="#4654A6"
+                  style={{ marginLeft: 9, lineHeight: 30 }}
+                />
+              </PlayBttn>
+            </Lists>
+          </ListContainer>
         )}
       />
 

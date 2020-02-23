@@ -16,8 +16,8 @@ const GobackBttn = styled.TouchableOpacity`
 const WholeWrap = styled.View`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   flex: 1;
+  justify-content: center;
 `;
 
 const ColorSelect = styled.TouchableOpacity`
@@ -56,6 +56,7 @@ const TopGroup = styled.View`
   align-content: flex-end;
   justify-content: center;
   flex: 2;
+  flex-grow: 3;
 `;
 
 const Inputs = styled.TextInput`
@@ -63,7 +64,7 @@ const Inputs = styled.TextInput`
   height: 50px;
   border-bottom-width: 2px;
   border-bottom-color: #9ba8dd;
-  color: #bcbcbc;
+  color: #888;
   font-size: 24px;
   text-align: center;
   margin-top: 35px;

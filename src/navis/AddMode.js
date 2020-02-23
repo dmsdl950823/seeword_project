@@ -1,4 +1,5 @@
 import React from "react";
+import { Text } from "react-native";
 import styled from "styled-components";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -16,6 +17,7 @@ import {
   Buttons,
   ButtonText,
 } from "./styles/AddMode_Styles";
+import { ScrollView } from "react-native-gesture-handler";
 
 const Stack = createStackNavigator();
 
@@ -54,12 +56,21 @@ function AddModePage() {
       </TopGroup>
 
       <InputWrap>
-        <Inputs onChangeText={text => onChangeText(text)} placeholder="WORD" />
+        <Inputs
+          onChangeText={text => onChangeText(text)}
+          placeholder="WORD"
+          placeholderTextColor="#bcbcbc"
+        />
         <Inputs
           onChangeText={text => onChangeText(text)}
           placeholder="MEANING"
+          placeholderTextColor="#bcbcbc"
         />
-        <Inputs onChangeText={text => onChangeText(text)} placeholder="TIP" />
+        <Inputs
+          onChangeText={text => onChangeText(text)}
+          placeholder="TIP"
+          placeholderTextColor="#bcbcbc"
+        />
       </InputWrap>
 
       <SubmitBtnWrap>
@@ -72,6 +83,10 @@ function AddModePage() {
       </SubmitBtnWrap>
     </WholeWrap>
   );
+}
+
+function onChangeText(txt) {
+  // console.log(txt);
 }
 
 // export default AddWords;

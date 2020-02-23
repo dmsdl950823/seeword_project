@@ -22,8 +22,8 @@ const Stack = createStackNavigator();
 
 export default class Main extends React.Component {
   state = {
-    // page: "main",
-    page: "other",
+    page: "main",
+    // page: "other",
   };
   render() {
     return (
@@ -32,7 +32,12 @@ export default class Main extends React.Component {
           screenOptions={{
             headerShown: this._pageState(),
             headerLeft: () => (
-              <GobackBttn onPress={() => navigation.goBack()} />
+              <GobackBttn
+                onPress={() => {
+                  // navigation.goBack();
+                  alert("ㄴㄱㅈㅁ");
+                }}
+              />
             ),
             headerTintColor: "#FFF",
             headerStyle: {
@@ -55,6 +60,7 @@ export default class Main extends React.Component {
   }
 
   _pageState() {
+    console.log(this.state.page);
     if (this.state.page === "main") {
       return false;
     } else {
@@ -64,13 +70,12 @@ export default class Main extends React.Component {
 }
 
 function MainPage({ navigation }) {
-  console.log(this);
   return (
     <Container>
       <ImgBack source={require("./../assets/back.png")}>
         <MainIcon />
 
-        <MainButtons navigation={navigation} toto="dd?" />
+        <MainButtons navigation={navigation} poster="poster" />
         {/* <Button
             title="example"
             onPress={() => {
@@ -82,12 +87,18 @@ function MainPage({ navigation }) {
   );
 }
 
-function MainButtons(nav) {
+function MainButtons(nav, { toto }) {
   // console.log(nav.navigation);
+  console.log(toto);
+  console.log("scare....");
   return (
     <ButtonsContainer>
       <View style={styles.shadow}>
-        <MoveButton onPress={() => nav.navigation.navigate("AddWords")}>
+        <MoveButton
+          onPress={() => {
+            nav.navigation.navigate("AddWords");
+            console.log(this);
+          }}>
           <ButtonText>ADD WORDS</ButtonText>
         </MoveButton>
       </View>
