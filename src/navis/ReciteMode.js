@@ -145,11 +145,29 @@ const HintWrap = styled.View`
 `;
 
 const HintBox = styled.TouchableOpacity`
+  position: absolute;
   display: flex;
   width: 250px;
-  background-color: #d9e6ff;
   height: 90px;
   border-radius: 15px;
+`;
+
+const HintBehind = styled.View`
+  position: relative;
+  display: flex;
+  width: 250px;
+  height: 90px;
+  border-radius: 15px;
+  background-color: #fff;
+`;
+
+const HintText = styled.Text`
+  border-radius: 15px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 12px;
+  padding: 15px;
 `;
 
 function RecitePage() {
@@ -167,12 +185,7 @@ function RecitePage() {
 
       <Supplements>
         <RandomButton>
-          <FontAwesome
-            name="random"
-            size={30}
-            color="#4654A6"
-            style={{ textAlign: "center", lineHeight: 40 }}
-          />
+          <RandomIcon name="random" />
         </RandomButton>
         <LeftLengthWrap style={{ position: "relative" }}>
           <AnimatedGaugeProgress
@@ -193,20 +206,91 @@ function RecitePage() {
       </Supplements>
 
       <HintWrap>
-        <HintBox>
+        <HintSection />
+      </HintWrap>
+    </Whole>
+  );
+}
+
+class RandomIcon extends React.Component {
+  state = {
+    name: this.props.name,
+  };
+  render() {
+    return (
+      <FontAwesome
+        name={this.state.name}
+        size={30}
+        color="#4654A6"
+        style={{ textAlign: "center", lineHeight: 40 }}
+        onPress={() => this._ChangeIcon()}
+      />
+    );
+  }
+
+  _ChangeIcon() {
+    let iconName;
+    if (this.state.name === "random") {
+      iconName = "long-arrow-right";
+    } else {
+      iconName = "random";
+    }
+    this.setState({
+      name: iconName,
+    });
+  }
+}
+
+class HintSection extends React.Component {
+  state = {
+    back: "#d9e6ff",
+    style: {
+      textAlign: "center",
+      lineHeight: 90,
+      opacity: 1,
+    },
+  };
+
+  render() {
+    const background = { backgroundColor: this.state.back };
+    return (
+      <HintBehind>
+        <HintText>
+          Hint Text.. Hint Text.. Hint Text.. Hint Text.. Hint Text.. Hint
+          Text.. Hint Text.. Hint Text..
+        </HintText>
+        <HintBox onPress={() => this._changeOpacity()} style={background}>
           <MaterialIcons
             name="lightbulb-outline"
             size={40}
             color="#FFF"
-            style={{
-              textAlign: "center",
-              lineHeight: 90,
-            }}
+            style={this.state.style}
           />
         </HintBox>
-      </HintWrap>
-    </Whole>
-  );
+      </HintBehind>
+    );
+  }
+
+  _changeOpacity() {
+    let status = this.state.style;
+    if (status.opacity === 1) {
+      this.setState(prevState => ({
+        style: {
+          ...prevState.style,
+          opacity: 0,
+        },
+        back: "transparent",
+      }));
+    } else {
+      this.setState(prevState => ({
+        style: {
+          ...prevState.style,
+          opacity: 1,
+        },
+        back: "#d9e6ff",
+      }));
+    }
+  }
 }
 
 // export default ReciteMode;
