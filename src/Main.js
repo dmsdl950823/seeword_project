@@ -21,16 +21,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 const Stack = createStackNavigator();
 
 export default class Main extends React.Component {
-  state = {
-    page: "main",
-    // page: "other",
-  };
   render() {
     return (
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
-            headerShown: this._pageState(),
+            // headerShown: this._pageState(),
+            headerShown: pageState(),
             headerLeft: () => (
               <GobackBttn
                 onPress={() => {
@@ -58,16 +55,19 @@ export default class Main extends React.Component {
       </NavigationContainer>
     );
   }
-
-  _pageState() {
-    console.log(this.state.page);
-    if (this.state.page === "main") {
-      return false;
-    } else {
-      return true;
-    }
-  }
 }
+
+function pageState(crrPg) {
+  crrPg === "main" ? true : false;
+}
+
+// function _changePage(currPage) {
+//   currPage.page = "other"; //  "main"
+//   console.log(currPage);
+
+//   if (currPage.page === "main") return true;
+//   else return false;
+// }
 
 function MainPage({ navigation }) {
   return (
@@ -76,39 +76,35 @@ function MainPage({ navigation }) {
         <MainIcon />
 
         <MainButtons navigation={navigation} poster="poster" />
-        {/* <Button
-            title="example"
-            onPress={() => {
-              navigation.navigate("AddWords");
-            }}
-          /> */}
       </ImgBack>
     </Container>
   );
 }
 
-function MainButtons(nav, { toto }) {
+function MainButtons(nav) {
   // console.log(nav.navigation);
-  console.log(toto);
-  console.log("scare....");
+  const currPage = {
+    page: "main",
+  };
+
   return (
     <ButtonsContainer>
       <View style={styles.shadow}>
         <MoveButton
-          onPress={() => {
-            nav.navigation.navigate("AddWords");
-            console.log(this);
-          }}>
+          onPress={() =>
+            // param
+            nav.navigation.navigate("AddWords", { page: currPage.page })
+          }>
           <ButtonText>ADD WORDS</ButtonText>
         </MoveButton>
       </View>
       <View style={styles.shadow}>
-        <MoveButton onPress={() => nav.navigation.navigate("MyLists")}>
+        <MoveButton onPress={() => nav.navigation.navigate("Recite")}>
           <ButtonText>RECITE MODE</ButtonText>
         </MoveButton>
       </View>
       <View style={styles.shadow}>
-        <MoveButton onPress={() => nav.navigation.navigate("Recite")}>
+        <MoveButton onPress={() => nav.navigation.navigate("MyLists")}>
           <ButtonText>MY LISTS</ButtonText>
         </MoveButton>
       </View>

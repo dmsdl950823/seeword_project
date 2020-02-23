@@ -48,10 +48,12 @@ function AddModePage() {
   return (
     <WholeWrap>
       <TopGroup>
-        <ColorSelect />
+        <ColorSelect onPress={() => console.log("Color!")} />
 
         <GroupSelect>
-          <GroupListText>Group</GroupListText>
+          <GroupListText onPress={() => console.log("Group!")}>
+            Group
+          </GroupListText>
         </GroupSelect>
       </TopGroup>
 
@@ -74,10 +76,10 @@ function AddModePage() {
       </InputWrap>
 
       <SubmitBtnWrap>
-        <Buttons title="REGISTER">
+        <Buttons title="REGISTER" onPress={() => console.log("Register!")}>
           <ButtonText>REGISTER</ButtonText>
         </Buttons>
-        <Buttons title="CANCLE">
+        <Buttons title="CANCLE" onPress={() => console.log("Cancle!")}>
           <ButtonText>CANCLE</ButtonText>
         </Buttons>
       </SubmitBtnWrap>
