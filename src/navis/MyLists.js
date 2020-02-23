@@ -12,6 +12,7 @@ import {
 import styled from "styled-components";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { MoreButton } from "./../events/More";
 import {
   MaterialCommunityIcons,
   Foundation,
@@ -95,6 +96,8 @@ const Lists = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
+  position: relative;
+  z-index: -2;
 `;
 
 const GroupName = styled.Text`
@@ -116,28 +119,67 @@ const MoreCont = styled(PlayBttn)`
   margin-left: 12px;
 `;
 
+const SmallPopUp = styled.View`
+  position: absolute;
+  top: 55px;
+  right: 25px;
+  width: 120px;
+  height: 45px;
+  border: 3px solid #bfcff7;
+  background: #e6f7ff;
+  border-radius: 12px;
+  z-index: 22;
+  display: flex;
+  flex-direction: row;
+  opacity: 0;
+`;
+
+const HideBtn = `
+  flex: 1
+  height: 39px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 39px;
+`;
+
+const RmvButton = styled.Text`
+  ${HideBtn}
+  background: #E5E9F9;
+  border-top-left-radius: 9px;
+  border-bottom-left-radius: 9px;
+`;
+
+const ModifButton = styled.Text`
+  ${HideBtn}
+  background: #FFE9F1;
+  border-top-right-radius: 9px;
+  border-bottom-right-radius: 9px;
+`;
+
 function MyListsPage() {
+  const data = [
+    { key: "Group1" },
+    { key: "Group2" },
+    { key: "Group3" },
+    { key: "Group4" },
+    { key: "Group5" },
+    { key: "Group6" },
+    { key: "Group7" },
+    { key: "Group8" },
+    { key: "Group9" },
+    { key: "Group10" },
+  ];
+
   return (
     <View>
       <FlatList
-        data={[
-          { key: "Group1" },
-          { key: "Group2" },
-          { key: "Group3" },
-          { key: "Group4" },
-          { key: "Group5" },
-          { key: "Group6" },
-          { key: "Group7" },
-          { key: "Group8" },
-          { key: "Group9" },
-          { key: "Group10" },
-        ]}
+        data={data}
         style={styles.item_box}
         renderItem={({ item }) => (
           <ListContainer>
             <Lists>
               <GroupName>{item.key}</GroupName>
-              <MoreCont title="...">
+              <MoreCont title="..." onPress={e => console.log(e.target)}>
                 {/* <Ionicons name="dots-three-horizontal" /> */}
                 <MaterialCommunityIcons
                   name="dots-horizontal"
@@ -145,7 +187,10 @@ function MyListsPage() {
                   color="#9BA8DD"
                 />
               </MoreCont>
-              <PlayBttn title="random play">
+
+              <PlayBttn
+                title="random play"
+                onPress={() => console.log("play!")}>
                 <Foundation
                   name="play"
                   size={26}
@@ -153,6 +198,11 @@ function MyListsPage() {
                   style={{ marginLeft: 9, lineHeight: 30 }}
                 />
               </PlayBttn>
+
+              <SmallPopUp style={styles.Zindex}>
+                <RmvButton>REVISE</RmvButton>
+                <ModifButton>REMOVE</ModifButton>
+              </SmallPopUp>
             </Lists>
           </ListContainer>
         )}
@@ -193,6 +243,9 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
   },
   item_box2: { backgroundColor: "blue" },
+  Zindex: {
+    zIndex: 33, // works on ios
+  },
 });
 
 // export default MyLists;
