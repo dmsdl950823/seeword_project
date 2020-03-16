@@ -33,6 +33,45 @@ const ColorSelect = styled.TouchableOpacity`
   elevation: 8;
 `;
 
+const ColorSelects = styled.View`
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 250px;
+  width: 250px;
+  border: 2px solid #9ba8dd;
+  border-radius: 10px;
+  position: absolute;
+  top: 30%;
+  left: 19%;
+  elevation: 8;
+  padding: 25px;
+`;
+
+const ColorBoundary = styled.View`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 76%;
+  width: 100%;
+`;
+
+const ColorType = styled.TouchableOpacity`
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  width: 50px;
+  border: 2px solid #fff;
+  border-radius: 50px;
+  margin-bottom: 10px;
+  elevation: 3;
+`;
+
 const GroupSelect = styled.View`
   background-color: #fff;
   width: 150px;
@@ -40,6 +79,7 @@ const GroupSelect = styled.View`
   margin-left: 40px;
   border: 2px solid #9ba8dd;
   border-radius: 10px;
+  position: relative;
 `;
 
 const GroupListText = styled.Text`
@@ -47,6 +87,55 @@ const GroupListText = styled.Text`
   line-height: 55px;
   font-size: 24px;
   color: #bcbcbc;
+`;
+
+const GroupLists = styled.View`
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 25px;
+  align-items: center;
+  height: 300px;
+  width: 250px;
+  border: 2px solid #9ba8dd;
+  border-radius: 10px;
+  position: absolute;
+  top: 30%;
+  right: 20%;
+  elevation: 8;
+`;
+
+const GroupScrolls = styled.ScrollView`
+  width: 100%;
+  height: 80%;
+  margin-bottom: 20px;
+`;
+
+const GroupNames = styled.Text`
+  color: #000;
+  height: 50px;
+  line-height: 50px;
+  width: 100%;
+  border-bottom-width: 1px;
+  border-bottom-color: #bfcff7;
+  text-align: center;
+`;
+
+const ConfirmButton = styled.TouchableOpacity`
+  background-color: #4654a6;
+  display: flex;
+  height: 50px;
+  width: 150px;
+  elevation: 5;
+  border-radius: 15px;
+  align-items: center;
+`;
+
+const ConfirmText = styled.Text`
+  color: #fff;
+  font-size: 18px;
+  line-height: 50px;
 `;
 
 const TopGroup = styled.View`
@@ -84,15 +173,6 @@ const SubmitBtnWrap = styled.View`
   align-content: center;
   flex: 3;
 `;
-GobackBttn,
-  WholeWrap,
-  ColorSelect,
-  GroupSelect,
-  GroupListText,
-  TopGroup,
-  Inputs,
-  InputWrap,
-  SubmitBtnWrap;
 
 const Buttons = styled.TouchableOpacity`
   width: 150px;
@@ -110,6 +190,12 @@ const ButtonText = styled.Text`
   line-height: 45px;
 `;
 
+const Blur = styled.View`
+  width: 100%;
+  height: 80%;
+  filter: blur(8px);
+`;
+
 export {
   GobackBttn,
   WholeWrap,
@@ -122,4 +208,13 @@ export {
   SubmitBtnWrap,
   Buttons,
   ButtonText,
+  GroupLists,
+  ColorSelects,
+  ColorBoundary,
+  ColorType,
+  ConfirmButton,
+  ConfirmText,
+  GroupNames,
+  GroupScrolls,
+  Blur,
 };
