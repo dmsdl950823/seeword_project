@@ -15,7 +15,7 @@ import {
   GobackBttn,
 } from "./components/Main_styles";
 
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, CommonActions } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
@@ -24,50 +24,42 @@ export default class Main extends React.Component {
   render() {
     return (
       <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            // headerShown: this._pageState(),
-            headerShown: pageState(),
-            headerLeft: () => (
-              <GobackBttn
-                onPress={() => {
-                  // navigation.goBack();
-                  alert("ㄴㄱㅈㅁ");
-                }}
-              />
-            ),
-            headerTintColor: "#FFF",
-            headerStyle: {
-              backgroundColor: "#4654A6",
-            },
-            headerTitleStyle: {
-              // fontWeight: "bold",
-            },
-          }}
-          options={{
-            title: "Main",
-          }}>
-          <Stack.Screen name="Main" component={MainPage} />
-          <Stack.Screen name="AddWords" component={AddModePage} />
-          <Stack.Screen name="MyLists" component={MyListsPage} />
-          <Stack.Screen name="Recite" component={RecitePage} />
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Main"
+            component={MainPage}
+            options={{ headerShown: false }}
+          />
+
+          <Stack.Screen
+            name="AddWords"
+            component={AddModePage}
+            options={this._options}
+          />
+          <Stack.Screen
+            name="MyLists"
+            component={MyListsPage}
+            options={this._options}
+          />
+          <Stack.Screen
+            name="Recite"
+            component={RecitePage}
+            options={this._options}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );
   }
+
+  _options() {
+    return {
+      headerTintColor: "#FFF",
+      headerStyle: {
+        backgroundColor: "#4654A6",
+      },
+    };
+  }
 }
-
-function pageState(crrPg) {
-  crrPg === "main" ? true : false;
-}
-
-// function _changePage(currPage) {
-//   currPage.page = "other"; //  "main"
-//   console.log(currPage);
-
-//   if (currPage.page === "main") return true;
-//   else return false;
-// }
 
 function MainPage({ navigation }) {
   return (
